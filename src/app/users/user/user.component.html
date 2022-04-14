@@ -1,2 +1,5 @@
-<p>User with ID _ID_ loaded.</p>
-<p>User name is _NAME_</p>
+<p>User with ID _ID_ loaded{{user.id}}.</p>
+<p>User name is _NAME_{{user.name}}</p>
+
+<hr>
+<a href="" [routerLink]="['/users',10,'Anna']">Load Anna</a>
