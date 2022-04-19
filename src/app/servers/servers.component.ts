@@ -8,7 +8,7 @@ import { ServersService } from "./servers.service";
   styleUrls: ["./servers.component.css"],
 })
 export class ServersComponent implements OnInit {
-  server: { id: number; name: string; status: string };
+  servers: { id: number; name: string; status: string };
 
   constructor(
     private route: ActivatedRoute,
@@ -17,14 +17,15 @@ export class ServersComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    const id = this.route.snapshot.params['id'];
-    this.server = this.serversService.getServer(id);
+    const id = +this.route.snapshot.params["id"];
+    this.servers = this.serversService.getServer(id);
     this.route.params.subscribe((params: Params) => {
-      this.server = this.serversService.getServer(id);
+      this.servers = this.serversService.getServer(+params["id"]);
     });
   }
 
   onReload() {
-    // this.router.navigate(['servers'],{relativeTo:this.route});
+    //this.paramsSubscription.unsubscribe();
+    this.router.navigate(["servers"], { relativeTo: this.route });
   }
 }
